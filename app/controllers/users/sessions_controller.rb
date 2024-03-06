@@ -13,12 +13,13 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def respond_to_on_destroy
-    log_out_success && return if current_user
+    log_out_failure && return if !current_user
 
-    log_out_failure
+    log_out_success
   end
 
   def log_out_success
+    reset_session
     render json: { message: 'You are logged out.' }, status: :ok
   end
 

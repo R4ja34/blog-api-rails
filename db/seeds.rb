@@ -22,7 +22,8 @@ Article.destroy_all
   5.times do
     user.articles.create(
       title: Faker::Lorem.sentence,
-      content: Faker::Lorem.paragraph
+      content: Faker::Lorem.paragraph,
+      is_private: [true, false].sample
     )
   end
 end
